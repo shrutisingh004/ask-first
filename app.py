@@ -28,7 +28,6 @@ def load_data():
         return json.load(f)
 
 def format_user_history(user: dict) -> str:
-    """Format a user's full conversation history as a rich text block for the LLM."""
     lines = []
     lines.append(f"USER PROFILE")
     lines.append(f"Name: {user['name']}, Age: {user['age']}, Gender: {user['gender']}")
@@ -106,7 +105,6 @@ def get_client():
     return genai.Client(api_key=api_key)
 
 def parse_patterns_from_response(response_text: str) -> list:
-    """Extract JSON patterns from LLM response."""
     # Try to find JSON array inside <patterns> tags
     patterns_match = re.search(r'<patterns>(.*?)</patterns>', response_text, re.DOTALL)
     if patterns_match:
